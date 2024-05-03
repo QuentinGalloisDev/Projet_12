@@ -1,8 +1,12 @@
 
+let cachedData = null;
 
 const FetchData = async (userId) => {
 
     try {
+        if (cachedData) {
+            return cachedData;
+        }
         const urls = [
             `http://localhost:3000/user/${userId}`,
             `http://localhost:3000/user/${userId}/activity`,
@@ -16,6 +20,7 @@ const FetchData = async (userId) => {
         // Transforme les réponses en JSON
         const data = await Promise.all(responses.map(response => response.json()));
 
+        cachedData = data;
         return data;
     } catch (error) {
         console.error('Error fetching data:', error);
