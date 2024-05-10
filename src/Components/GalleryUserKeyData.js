@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 import { USER_MAIN_DATA } from '../data'
 import UserKeyData from './UserKeyData'
@@ -6,13 +6,42 @@ import calorieIcon from '../Icons/calories-icon.svg'
 import proteinIcon from '../Icons/protein-icon.svg'
 import carbsIcon from '../Icons/carbs-icon.svg'
 import fatIcon from '../Icons/fat-icon.svg'
-
+import { getUser } from "../Service/FetchData"
 const GalleryUserKeyData = () => {
 
-    let userKeyData = USER_MAIN_DATA[0].keyData
-    userKeyData = Object.entries(userKeyData)
-    // console.log(userKeyData)
 
+
+
+    const [userData, setUserData] = useState(null);
+    const [userDataForChart, setUserDataForChart] = useState([]);
+
+    useEffect(() => {
+        // Utilisez useEffect pour charger les données de l'utilisateur au montage du composant
+        const fetchData = async () => {
+            try {
+                const res = await getUser(12); // Récupère les données de l'utilisateur
+                setUserData(res.data.keyData); // Met à jour l'état avec les données récupérées
+            } catch (error) {
+                console.error('Erreur lors de la récupération des données de l\'utilisateur:', error);
+            }
+        };
+
+        fetchData(); // Appel de la fonction fetchData
+    }, []);
+    // console.log(userData)
+
+    //Formattage
+    useEffect(() => {
+        if (userData) {
+            let userKeyData = userData
+            userKeyData = Object.entries(userKeyData)
+            // console.log(userKeyData)
+            setUserDataForChart(userKeyData)
+        }
+
+    }, [userData]);
+    //Formattage
+    // console.log(userDataForChart)
     // mettre les icones associée à chaque UserKeyData suivant le nom de la donnée détecté en condition 
     // et mettre le chemin de l'url en fonction.
 
@@ -66,7 +95,7 @@ const GalleryUserKeyData = () => {
 
     return (
         <ul className='user_key_datas'>
-            {userKeyData.map((key) => (
+            {userDataForChart.map((key) => (
 
                 <li key={key[0]} >
                     {/* Passer les données de keyData en tant que props à UserKeyData */}

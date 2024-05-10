@@ -1,40 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 import { LineChart, Line, XAxis, Tooltip, Legend, ResponsiveContainer, Rectangle } from 'recharts';
 import { USER_AVERAGE_SESSIONS } from '../data'
-import SessionLength from '../Service/SessionLength';
-// importer durée des sessions et jour
-const Performance = (data) => {
-    let userAverageSessionsMocked = USER_AVERAGE_SESSIONS[0].sessions
+import { getUserAverageSessions } from "../Service/FetchData";
+import { dayInLetter } from './Utils/DayInLetter'
+const SessionLength = () => {
+    const [userSessions, setUserSessions] = useState(null);
+    const [userSessionsForChart, setUserSessionsForChart] = useState([]);
 
-    let averageSessionsForChart = userAverageSessionsMocked.map((averageSession) => {
-        return {
-            day: dayInLetter(averageSession.day),
-            sessionLength: averageSession.sessionLength
+    useEffect(() => {
+        // Utilisez useEffect pour charger les données de l'utilisateur au montage du composant
+        const fetchDataPerf = async () => {
+            try {
+                const res = await getUserAverageSessions(12); // Récupère les données de l'utilisateur
+                setUserSessions(res.data.sessions); // Met à jour l'état avec les données récupérées
+            } catch (error) {
+                console.error('Erreur lors de la récupération des données de l\'utilisateur:', error);
+            }
+        };
+        fetchDataPerf(); // Appel de la fonction fetchData
+    }, []);
+
+    // formattage
+    useEffect(() => {
+        if (userSessions) {
+            let averageSessionsForChart = userSessions.map((averageSession) => {
+                return {
+                    day: dayInLetter(averageSession.day),
+                    sessionLength: averageSession.sessionLength
+                }
+                // formattage
+            })
+            setUserSessionsForChart(averageSessionsForChart)
         }
-
-    })
-    // console.log(averageSessionsForChart)
-    function dayInLetter(number) {
-        switch (number) {
-            case 1:
-                return "L"
-            case 2:
-                return "M";
-            case 3:
-                return "M";
-            case 4:
-                return "J";
-            case 5:
-                return "V";
-            case 6:
-                return "S";
-            case 7:
-                return "D";
-
-            default:
-                break;
-        }
-    }
+    }, [userSessions]);
 
     const CustomTooltip = ({ active, payload }) => {
         if (active && payload && payload.length) {
@@ -69,14 +67,14 @@ const Performance = (data) => {
                 <LineChart
                     width={300}
                     height={100}
-                    data={SessionLength()}
+                    data={userSessionsForChart}
                     margin={{
                         top: 5,
                         right: 30,
                         left: 20,
                         bottom: 5,
                     }}
-                    style={{ backgroundColor: '#FF0000' }}
+                    style={{ backgroundColor: '#FF0000', borderRadius: '10px' }}
                 >
                     <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fill: '#FFFFFF' }} />
                     <Tooltip content={<CustomTooltip />} cursor={<CustomizedCursor />} />
@@ -90,4 +88,4 @@ const Performance = (data) => {
     )
 }
 
-export default Performance
+export default SessionLength

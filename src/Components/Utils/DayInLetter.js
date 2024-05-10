@@ -1,8 +1,6 @@
 
 
-export default function DayInLetter(number) {
-
-
+export const dayInLetter = (number) => {
     switch (number) {
         case 1:
             return "L"
@@ -22,6 +20,4 @@ export default function DayInLetter(number) {
         default:
             break;
     }
-
-
 }
