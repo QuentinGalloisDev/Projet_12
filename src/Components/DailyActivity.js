@@ -4,7 +4,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsive
 import { USER_ACTIVITY } from '../data'
 // import DailyActivityService from '../Service/DailyActivity';
 import { getUserActivity } from "../Service/FetchData";
-import { getDayForChart } from './Utils/DateInNum'
+import { getDayForChart } from '../Utils/DateInNum'
 
 const DailyActivity = () => {
 
@@ -94,20 +94,15 @@ const DailyActivity = () => {
 export default DailyActivity
 
 
-// DailyActivity.prototype = {
-//     // Mettre required à l'id
-//     id: PropTypes.number,
-// }
-
-
-
-// let findweightMin = sessionsTab.map((weight) => {
-//     const weights = {}
-//     weights['weight'] = weight.kilogram
-//     return weights.weight
-// })
-// let weightSort = findweightMin.sort()
-
-// const uniqueWeight = [...new Set(weightSort)]
-
-// console.log(uniqueWeight)
+DailyActivity.prototype = {
+    userActivity: PropTypes.arrayOf(PropTypes.shape({
+        day: PropTypes.string.isRequired,
+        kilogram: PropTypes.number.isRequired,
+        calories: PropTypes.number.isRequired
+    })),
+    userActivityForChart: PropTypes.arrayOf(PropTypes.shape({
+        day: PropTypes.string.isRequired,
+        kilogram: PropTypes.number.isRequired,
+        calories: PropTypes.number.isRequired
+    }))
+}

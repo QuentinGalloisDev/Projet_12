@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import data from '../data'
 import { getUser } from "../Service/FetchData"
-
+import PropTypes from 'prop-types';
 
 const HelloUser = ({ user }) => {
     // const [userData, setUserData] = useState(null);
@@ -33,6 +33,11 @@ const HelloUser = ({ user }) => {
         </div>
     );
 };
-
+HelloUser.prototype = {
+    id: PropTypes.number,
+    keyData: PropTypes.object,
+    todayScore: PropTypes.number,
+    userInfos: PropTypes.object,
+}
 export default HelloUser;
 

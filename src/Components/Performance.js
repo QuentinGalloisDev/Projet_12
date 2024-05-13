@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } from 'recharts';
 import PropTypes from 'prop-types';
-import { USER_PERFORMANCE } from '../data'
-// import PerformanceService from '../Service/Performance';
+import { perfChart } from "../Utils/PerfForChart";
 import { getUserPerformance } from "../Service/FetchData";
 // Mettre en props les données récupérées dans les service et importer les données recupérées dans les service dans le app et les mettre dans les composant.
 
@@ -24,8 +23,23 @@ const Performance = () => {
             try {
                 const res = await getUserPerformance(12); // Récupère les données de l'utilisateur
                 setUserPerf(res); // Met à jour l'état avec les données récupérées
+
             } catch (error) {
                 console.error('Erreur lors de la récupération des données de l\'utilisateur:', error);
+            }
+            if (userperf) {
+
+                // Fonction
+                let user1Data = userperf.data.data;
+                let typeOfSport = userperf.data.kind;
+                let performanceForChart = user1Data.map((perf) => {
+                    const perfForChart = {};
+                    perfForChart["kind"] = typeOfSport[perf.kind];
+                    perfForChart["value"] = perf.value;
+                    return perfForChart;
+                });
+                // Fonction
+                setUserPerformanceForChart(performanceForChart);
             }
         };
 
@@ -33,24 +47,13 @@ const Performance = () => {
     }, []);
 
     // formattage
-
     useEffect(() => {
-        if (userperf && userperf.data) {
-            // Fonction
-            let user1Data = userperf.data.data;
-            let typeOfSport = userperf.data.kind;
-            let performanceForChart = user1Data.map((perf) => {
-                const perfForChart = {};
-                perfForChart["kind"] = typeOfSport[perf.kind];
-                perfForChart["value"] = perf.value;
-                return perfForChart;
-            });
+        if (userperf) {
+            let performanceForChart = perfChart(userperf)
             // Fonction
             setUserPerformanceForChart(performanceForChart);
         }
     }, [userperf]);
-
-    // console.log(userPerformanceForChart);
     // formattage
 
     return (
@@ -66,6 +69,22 @@ const Performance = () => {
             )}
         </div>
     )
+}
+
+Performance.propTypes = {
+    userperf: PropTypes.shape({
+        data: PropTypes.shape({
+            kind: PropTypes.object.isRequired,
+            data: PropTypes.arrayOf(PropTypes.shape({
+                kind: PropTypes.string.isRequired,
+                value: PropTypes.number.isRequired
+            })).isRequired
+        }).isRequired
+    }),
+    userPerformanceForChart: PropTypes.arrayOf(PropTypes.shape({
+        kind: PropTypes.string.isRequired,
+        value: PropTypes.number.isRequired
+    }))
 }
 
 export default Performance

@@ -16,15 +16,18 @@ export default function App() {
   useEffect(() => {
     // Utilisez useEffect pour charger les données de l'utilisateur au montage du composant
     const fetchData = async () => {
+
       try {
-        const res = await getUser(12);
+        const res = await getUser(process.env.REACT_APP_ID_USER);
         // Formattage de l'objet avec todayScore * 100
         if (res.data.todayScore) {
           res.data.todayScore = res.data.todayScore * 100
         }
         else if (res.data.score) {
-          console.log(res.data.score)
           res.data.score = res.data.score * 100
+        }
+        else {
+          res.data.score = null
         }
         // Récupère les données de l'utilisateur
         setUserData(res.data); // Met à jour l'état avec les données récupérées

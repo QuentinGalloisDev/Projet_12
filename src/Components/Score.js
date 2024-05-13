@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { RadialBarChart, RadialBar, Legend, ResponsiveContainer, PolarAngleAxis } from 'recharts';
-
+import PropTypes from 'prop-types';
 import { USER_MAIN_DATA } from '../data'
 
 const Score = ({ user }) => {
-
     return (
-
         <div className='score' style={{ backgroundColor: "#FBFBFB" }}>
             {user && (
                 <ResponsiveContainer width="100%" height="100%">
@@ -56,6 +54,12 @@ const Score = ({ user }) => {
             )}
         </div>
     )
+}
+Score.prototype = {
+    id: PropTypes.number,
+    keyData: PropTypes.object,
+    todayScore: PropTypes.number,
+    userInfos: PropTypes.object,
 }
 
 export default Score

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { LineChart, Line, XAxis, Tooltip, Legend, ResponsiveContainer, Rectangle } from 'recharts';
 import { USER_AVERAGE_SESSIONS } from '../data'
 import { getUserAverageSessions } from "../Service/FetchData";
-import { dayInLetter } from './Utils/DayInLetter'
+import { sessionsChart } from "../Utils/SessionsLengthForChart";
+import PropTypes from 'prop-types';
 const SessionLength = () => {
     const [userSessions, setUserSessions] = useState(null);
     const [userSessionsForChart, setUserSessionsForChart] = useState([]);
@@ -23,13 +24,7 @@ const SessionLength = () => {
     // formattage
     useEffect(() => {
         if (userSessions) {
-            let averageSessionsForChart = userSessions.map((averageSession) => {
-                return {
-                    day: dayInLetter(averageSession.day),
-                    sessionLength: averageSession.sessionLength
-                }
-                // formattage
-            })
+            let averageSessionsForChart = sessionsChart(userSessions)
             setUserSessionsForChart(averageSessionsForChart)
         }
     }, [userSessions]);
@@ -86,6 +81,20 @@ const SessionLength = () => {
             </ResponsiveContainer>
         </div>
     )
+}
+SessionLength.propTypes = {
+    userSessions: PropTypes.shape({
+        data: PropTypes.shape({
+            sessions: PropTypes.arrayOf(PropTypes.shape({
+                day: PropTypes.string.isRequired,
+                sessionLength: PropTypes.number.isRequired
+            })).isRequired
+        }).isRequired
+    }),
+    userSessionsForChart: PropTypes.arrayOf(PropTypes.shape({
+        day: PropTypes.string.isRequired,
+        sessionLength: PropTypes.number.isRequired
+    }))
 }
 
 export default SessionLength
