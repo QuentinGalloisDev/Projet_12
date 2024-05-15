@@ -3,7 +3,6 @@ import Sit from '../Icons/Sit.svg'
 import Bike from '../Icons/Bike.svg'
 import Swim from '../Icons/Swim.svg'
 import Weight from '../Icons/Weight.svg'
-import '../style/sideBar.css'
 
 export default function SideBar() {
     return (

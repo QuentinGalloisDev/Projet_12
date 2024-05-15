@@ -48,7 +48,7 @@ const DailyActivity = () => {
     };
     return (
 
-        <div className='dailyActivityChart' style={{ backgroundColor: "#FBFBFB" }}>
+        <div className='dailyActivityChart' style={{ backgroundColor: "#FBFBFB", borderRadius: '10px' }}>
             <h2>Activité quotidienne</h2>
             <ResponsiveContainer width="90%" height="100%" >
                 <BarChart
@@ -62,6 +62,7 @@ const DailyActivity = () => {
                         bottom: 5,
                     }}
                     barGap={8}
+
                 >
                     <CartesianGrid strokeDasharray="3 3" vertical={false} />
                     <XAxis dataKey='day'

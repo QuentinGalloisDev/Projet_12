@@ -3,12 +3,6 @@ import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } fro
 import PropTypes from 'prop-types';
 import { perfChart } from "../Utils/PerfForChart";
 import { getUserPerformance } from "../Service/FetchData";
-// Mettre en props les données récupérées dans les service et importer les données recupérées dans les service dans le app et les mettre dans les composant.
-
-// importer durée des sessions et jour
-// Je dois faire une boucle dans data qui est dans userPerformance et créer un tableau qui transforme les chiffres dans 
-// kind en la string qui correspond dans userPermormance.kind
-
 
 const Performance = () => {
 
@@ -26,20 +20,6 @@ const Performance = () => {
 
             } catch (error) {
                 console.error('Erreur lors de la récupération des données de l\'utilisateur:', error);
-            }
-            if (userperf) {
-
-                // Fonction
-                let user1Data = userperf.data.data;
-                let typeOfSport = userperf.data.kind;
-                let performanceForChart = user1Data.map((perf) => {
-                    const perfForChart = {};
-                    perfForChart["kind"] = typeOfSport[perf.kind];
-                    perfForChart["value"] = perf.value;
-                    return perfForChart;
-                });
-                // Fonction
-                setUserPerformanceForChart(performanceForChart);
             }
         };
 

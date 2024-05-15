@@ -13,6 +13,8 @@ import { getUser } from "./Service/FetchData";
 export default function App() {
 
   const [userData, setUserData] = useState(null);
+  const [userKeyData, setUserKeyData] = useState([]);
+
   useEffect(() => {
     // Utilisez useEffect pour charger les données de l'utilisateur au montage du composant
     const fetchData = async () => {
@@ -29,7 +31,6 @@ export default function App() {
         else {
           res.data.score = null
         }
-        // Récupère les données de l'utilisateur
         setUserData(res.data); // Met à jour l'état avec les données récupérées
       } catch (error) {
         console.error('Erreur lors de la récupération des données de l\'utilisateur:', error);
@@ -38,6 +39,17 @@ export default function App() {
 
     fetchData(); // Appel de la fonction fetchData
   }, []);
+
+  useEffect(() => {
+    if (userData) {
+      //Formattage KeyData
+      let keyData = userData.keyData
+      keyData = Object.entries(keyData)
+      setUserKeyData(keyData)
+      //Formattage KeyData
+    }
+  }, [userData]);
+
   return (
     <div className='container'>
       <Banner></Banner>
@@ -53,7 +65,7 @@ export default function App() {
 
 
         </div>
-        <GalleryUserKeyData />
+        <GalleryUserKeyData userKeyData={userKeyData} />
 
       </div>
     </div>
