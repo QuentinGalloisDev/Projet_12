@@ -15,7 +15,7 @@ const Performance = () => {
         // Utilisez useEffect pour charger les données de l'utilisateur au montage du composant
         const fetchDataPerf = async () => {
             try {
-                const res = await getUserPerformance(12); // Récupère les données de l'utilisateur
+                const res = await getUserPerformance(process.env.REACT_APP_ID_USER); // Récupère les données de l'utilisateur
                 setUserPerf(res); // Met à jour l'état avec les données récupérées
 
             } catch (error) {

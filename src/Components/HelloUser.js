@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-import data from '../data'
-import { getUser } from "../Service/FetchData"
+import React from "react";
 import PropTypes from 'prop-types';
 
 const HelloUser = ({ user }) => {

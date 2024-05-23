@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { USER_ACTIVITY } from '../data'
-// import DailyActivityService from '../Service/DailyActivity';
 import { getUserActivity } from "../Service/FetchData";
 import { getDayForChart } from '../Utils/DateInNum'
 
@@ -15,7 +13,7 @@ const DailyActivity = () => {
         // Utilisez useEffect pour charger les données de l'utilisateur au montage du composant
         const fetchDataPerf = async () => {
             try {
-                const res = await getUserActivity(12); // Récupère les données de l'utilisateur
+                const res = await getUserActivity(process.env.REACT_APP_ID_USER); // Récupère les données de l'utilisateur
                 setUserActivity(res.data.sessions); // Met à jour l'état avec les données récupérées
             } catch (error) {
                 console.error('Erreur lors de la récupération des données de l\'utilisateur:', error);
@@ -47,7 +45,6 @@ const DailyActivity = () => {
         return null;
     };
     return (
-
         <div className='dailyActivityChart' style={{ backgroundColor: "#FBFBFB", borderRadius: '10px' }}>
             <h2>Activité quotidienne</h2>
             <ResponsiveContainer width="90%" height="100%" >
@@ -62,7 +59,6 @@ const DailyActivity = () => {
                         bottom: 5,
                     }}
                     barGap={8}
-
                 >
                     <CartesianGrid strokeDasharray="3 3" vertical={false} />
                     <XAxis dataKey='day'
@@ -78,10 +74,6 @@ const DailyActivity = () => {
                         verticalAlign="top"
                         iconType='circle'
                         iconSize={9} />
-                    <Legend
-                        align='left'
-                        layout="horizontal"
-                        verticalAlign="top" />
                     <Bar name={<span style={{ color: '#74798C' }}>Poids (kg)</span>} dataKey="kilogram" yAxisId="right" fill="#282D30" radius={[20, 20, 0, 0]} barSize={10}
                     />
                     <Bar name={<span style={{ color: '#74798C' }}>Calories brûlées (kCal)</span>} dataKey="calories" yAxisId="left" fill="#E60000" radius={[20, 20, 0, 0]} barSize={10}
@@ -93,7 +85,6 @@ const DailyActivity = () => {
 }
 
 export default DailyActivity
-
 
 DailyActivity.prototype = {
     userActivity: PropTypes.arrayOf(PropTypes.shape({

@@ -49,7 +49,7 @@ export default function App() {
       //Formattage KeyData
     }
   }, [userData]);
-
+  console.log(userData)
   return (
     <div className='container'>
       <Banner></Banner>

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { LineChart, Line, XAxis, Tooltip, Legend, ResponsiveContainer, Rectangle } from 'recharts';
-import { USER_AVERAGE_SESSIONS } from '../data'
 import { getUserAverageSessions } from "../Service/FetchData";
 import { sessionsChart } from "../Utils/SessionsLengthForChart";
 import PropTypes from 'prop-types';
@@ -12,7 +11,7 @@ const SessionLength = () => {
         // Utilisez useEffect pour charger les données de l'utilisateur au montage du composant
         const fetchDataPerf = async () => {
             try {
-                const res = await getUserAverageSessions(12); // Récupère les données de l'utilisateur
+                const res = await getUserAverageSessions(process.env.REACT_APP_ID_USER); // Récupère les données de l'utilisateur
                 setUserSessions(res.data.sessions); // Met à jour l'état avec les données récupérées
             } catch (error) {
                 console.error('Erreur lors de la récupération des données de l\'utilisateur:', error);
@@ -42,7 +41,7 @@ const SessionLength = () => {
         return null;
     };
 
-    const CustomLegendContent = ({ payload }) => {
+    const CustomLegendContent = () => {
         return (
             <div className="custom-legend" style={{ color: "#FFFFFF" }}>
                 <p>

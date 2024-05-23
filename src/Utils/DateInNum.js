@@ -1,6 +1,5 @@
 export const getDayForChart = (activity) => {
     let userActivityMocked = activity
-    // console.log(userActivityMocked)
     let sessionsTab = userActivityMocked.map((session) => {
         return {
             day: new Date(session.day).getDay() + 1,

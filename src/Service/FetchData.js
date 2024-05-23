@@ -23,8 +23,6 @@ export const getUser = async (userId) => {
     }
 }
 
-
-
 export const getUserActivity = async (userId) => {
     try {
         if (process.env.REACT_APP_IS_MOCKED_DATA === 'false') {

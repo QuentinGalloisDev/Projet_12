@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
 import { RadialBarChart, RadialBar, Legend, ResponsiveContainer, PolarAngleAxis } from 'recharts';
 import PropTypes from 'prop-types';
-import { USER_MAIN_DATA } from '../data'
 
 const Score = ({ user }) => {
     return (
         <div className='score' style={{ backgroundColor: "#FBFBFB" }}>
             {user && (
                 <ResponsiveContainer width="100%" height="100%">
+                    <h2 style={{ margin: "0" }}>Score</h2>
                     <RadialBarChart
                         cx="50%"
                         cy="50%"
@@ -22,6 +21,7 @@ const Score = ({ user }) => {
                         barSize={10}
                         data={user}
                     >
+
                         {/* afficher les valeurs des angles sur le graphique. Dans ce cas, il est configuré en tant qu'axe numérique (type="number") avec un domaine de 0 à 125 degrés. */}
                         <PolarAngleAxis
                             type="number"
@@ -49,6 +49,7 @@ const Score = ({ user }) => {
                             layout="vertical"
                             verticalAlign="middle"
                         />
+
                     </RadialBarChart>
                 </ResponsiveContainer>
             )}
