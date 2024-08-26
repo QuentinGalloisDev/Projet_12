@@ -1,70 +1,91 @@
-# Getting Started with Create React App
+# Projet_12
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Forks](https://img.shields.io/github/forks/QuentinGalloisDev/Projet_12?style=for-the-badge)
+![Stargazers](https://img.shields.io/github/stars/QuentinGalloisDev/Projet_12?style=for-the-badge)
+![Issues](https://img.shields.io/github/issues/QuentinGalloisDev/Projet_12?style=for-the-badge)
+![License](https://img.shields.io/github/license/QuentinGalloisDev/Projet_12?style=for-the-badge)
 
-## Available Scripts
+<p align="center">
+  <a href="https://github.com/QuentinGalloisDev/Projet_12">
+    <img src="https://github.com/user-attachments/assets/58fffc2f-6d34-4897-a146-da59da167f23" alt="Logo" width="200" height="68">
 
-In the project directory, you can run:
 
-### `npm start`
+  </a>
+</p>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<p align="center">
+  Projet d'application de tableau de bord pour les utilisateurs sportifs.
+  <br />
+  <a href="https://github.com/QuentinGalloisDev/Projet_12"><strong>Explorez la documentation »</strong></a>
+  <br />
+  <br />
+  <a href="https://github.com/QuentinGalloisDev/Projet_12/issues">Signaler un bug</a>
+  ·
+  <a href="https://github.com/QuentinGalloisDev/Projet_12/issues">Demander une fonctionnalité</a>
+</p>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Table des matières
 
-### `npm test`
+* [À propos du projet](#à-propos-du-projet)
+  * [Technologies](#technologies)
+  * [Fonctionnalités](#fonctionnalités)
+* [Prise en main](#prise-en-main)
+  * [Prérequis](#prérequis)
+  * [Installation](#installation)
+* [Utilisation](#utilisation)
+* [Contact](#contact)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## À propos du projet
 
-### `npm run build`
+**Projet_12** est une application de tableau de bord conçue pour les utilisateurs sportifs. Elle permet de suivre les statistiques et les performances des utilisateurs à travers divers graphiques et indicateurs.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Technologies
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Ce projet a été réalisé avec les technologies suivantes :
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* ![React](https://img.shields.io/badge/React-v18.2.0-blue)
+* ![Recharts](https://img.shields.io/badge/Recharts-v2.12.4-blue)
+* ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow)
+* ![HTML5](https://img.shields.io/badge/HTML5-v5.0-orange)
+* ![CSS3](https://img.shields.io/badge/CSS3-v3.0-blue)
 
-### `npm run eject`
+### Fonctionnalités
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **Suivi des activités** : Suivi des sessions d'entraînement quotidiennes.
+- **Analyse des performances** : Visualisation des performances avec des graphiques interactifs.
+- **Objectifs de santé** : Indicateurs pour les calories, protéines, glucides, et lipides.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Prise en main
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Pour exécuter ce projet localement, suivez les étapes ci-dessous.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Prérequis
 
-## Learn More
+Assurez-vous que vous avez bien installé les éléments suivants :
+* Node.js
+* npm ou yarn
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Installation
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Clonez le dépôt
 
-### Code Splitting
+   ```sh
+   git clone https://github.com/QuentinGalloisDev/Projet_12.git
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+2. Installez les dépendances NPM
 
-### Analyzing the Bundle Size
+   ```sh
+   npm install
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Utilisation
 
-### Making a Progressive Web App
+Une fois l'installation terminée, vous pouvez lancer l'application avec la commande suivante :
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```sh
+npm start
+```
+Ouvrez http://localhost:3000 pour visualiser l'application dans votre navigateur.
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Contact
+Quentin Gallois - quentingallois@yahoo.com
+Lien du projet : https://github.com/QuentinGalloisDev/Projet_12
